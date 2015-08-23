@@ -1,0 +1,19 @@
+CC = g++
+TARGET  = uva.exe
+SRCS    = uva_195.cpp 
+CCFLAGS = -O2 -pipe -DONLINE_JUDGE
+LDFLAGS = -lm -lcrypt
+LIBS    = 
+OBJS    := $(SRCS:.cpp=.o)
+
+.PHONY: all clean
+all:: $(TARGET) 
+
+$(TARGET): $(OBJS) 
+	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+	
+$(OBJS): %.o: %.cpp 
+	$(CC) $(CCFLAGS) -o $@ -c $< 
+
+clean: 
+	rm -f *.o $(TARGET) 
